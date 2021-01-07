@@ -4,28 +4,24 @@ const API = axios.create({
     baseURL: `http://localhost:5000/bookmarks`,    
 });
 
-export type Bookmarks = Bookmark[]
-
-export type Bookmark = {
-    title? : string
-    url?: string
-    tag?: string
-    date?: any
-}
-
 export const getBookmarks = async () => {
-    await API.get<Bookmarks>('/')
-        .then(response => {
-            console.log(response.data)
-            const {data} = response;
-            return data;
-        })
-        .catch(error => {
-            console.log(error);
-        })
+    try {
+        let data = await API.get('/')
+            .then(response => {
+                console.log(response.data);
+                return response.data;
+            })
+            .catch(error => {
+                console.log(error);
+            })
+        return data;
+        }
+    catch(error){
+        console.error(error);
+    }
 }
 
-export const addBookmark = async (params : Bookmark) => {
+export const addBookmark = async (params) => {
     await API.post('/add', {
         title: params.title,
         url: params.url,

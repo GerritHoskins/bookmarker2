@@ -1,42 +1,37 @@
 import React, { useEffect, useState, useRef } from 'react';
-import { getBookmarks, addBookmark, Bookmark, Bookmarks } from './../services/bookmark';
+import { getBookmarks, addBookmark } from '../services/bookmark';
 import List from './List';
-const test : Bookmark = {
+
+const test = {
     title: "Express App",
     url: "https://dev.to/myogeshchavan97/create-a-bookmark-manager-app-using-faunadb-and-netlify-serverless-functions-4cp0",
     tag: "Express MongoDB Node.js",
     date: "2019-04-30T21:19:15.187Z"
 }
 
-interface Props {
-  };
-const Controls: React.FC<Props> = () => {
-    const [bookmarks, setBookmarks] = useState({});
+const Controls = () => {
+    const [bookmarks, setBookmarks] = useState([]);
     const [loading, setLoader] = useState(false);
     const mounted = useRef(true);
 
-    useEffect(() => {        
-        (async () => {
-          // const items = fetchBookmarks();  
-           const items = await fetchBookmarks();   
-           console.log(items)    
-        })();
-
-        return () => {
-            mounted.current = false;         
-        };
-
- 
-        
+    useEffect(() => {
+        if(!bookmarks.length > 0){
+            fetchBookmarks();              
+            setLoader(false);
+        }        
     }, [])
 
-    const fetchBookmarks = async() => {
+    const fetchBookmarks = async () => {
         mounted.current = true;
         setLoader(true);
-        await getBookmarks()
-        .then(items => {
-            return items;
-        })
+            let items = await getBookmarks();                     
+                if (mounted.current) {
+                    setBookmarks(items);
+                    setLoader(false);
+                }
+            return () => {
+                mounted.current = false;
+            }
     }
 
     return (
@@ -49,9 +44,11 @@ const Controls: React.FC<Props> = () => {
             Bookmarks List
         </button> */}
         </div>
-        <div>
-            <List props={test} />
-        </div>
+        {!loading &&
+            <div>
+                <List bookmarks={bookmarks} />
+            </div>
+        }
     </section>
     );
 };
