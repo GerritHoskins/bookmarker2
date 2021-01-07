@@ -1,0 +1,9 @@
+POST http://localhost:5000/bookmarks/add HTTP/1.1
+content-type: application/json
+
+{
+    "title": "Express App",
+    "url": "https://dev.to/myogeshchavan97/create-a-bookmark-manager-app-using-faunadb-and-netlify-serverless-functions-4cp0",
+    "tag": "Express MongoDB Node.js",
+    "date": "2019-04-30T21:19:15.187Z"
+}

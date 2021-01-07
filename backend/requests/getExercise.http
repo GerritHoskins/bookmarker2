@@ -1,0 +1,9 @@
+POST http://localhost:5000/exercises/update/5fca4e2dd1d00e0e4cc89d91 HTTP/1.1
+content-type: application/json
+
+{
+    "username": "beau",
+    "description": "bike ride",
+    "duration": 50,
+    "date": "2019-04-30T21:19:15.187Z"
+}
