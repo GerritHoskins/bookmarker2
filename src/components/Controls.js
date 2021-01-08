@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { getBookmarks, addBookmark } from '../services/bookmark';
 import List from './List';
 
@@ -37,9 +38,9 @@ const Controls = () => {
     return (
         <section className="controls">
             <div className="control-links">
-            <button onClick={() => addBookmark(test)} className="link">
+            <Link to="/add" className="link">
                 Add Bookmark
-            </button>
+            </Link>
             {/* <button onClick={() => fetchBookmarks()} className="link">
                 Bookmarks List
             </button> */}

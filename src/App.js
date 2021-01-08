@@ -4,8 +4,7 @@ import Controls from './components/Controls';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">Bookmark App</header>
+    <div className="App">      
       <Controls />
     </div>
   );
