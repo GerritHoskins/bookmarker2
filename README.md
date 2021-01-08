@@ -45,3 +45,4 @@ You can learn more in the [Create React App documentation](https://facebook.gith
 
 To learn React, check out the [React documentation](https://reactjs.org/).
 # bookmarker2
+DATABASE_URL=mongodb+srv://GerritHoskins:99604752.b@cluster0.spnqs.mongodb.net/app_bookmarker?retryWrites=true
