@@ -7,6 +7,7 @@ const BookmarkForm = (props) => {
     url: props.url ? props.url : '',
     tag: props.tag ? props.tag : 'React',
     tags: TAGS,
+    date: '2019-04-30T21:19:15.187Z',
     errorMsg: ''
   });
 
@@ -20,12 +21,12 @@ const BookmarkForm = (props) => {
 
   const onFormSubmit = (event) => {
     event.preventDefault();
-    const { title, url, tag } = state;
+    const { title, url, tag, date } = state;
     const { _id } = props;
     const isEditPage = !!props.title;
 
     if (title.trim() !== '' && url.trim() !== '' && tag.trim() !== '') {
-      let data = { title, url, tag };
+      let data = { title, url, tag, date };
       if (isEditPage) {
         data = { ...data, _id };
       }
@@ -38,7 +39,7 @@ const BookmarkForm = (props) => {
     }
   };
 
-  const { title, url, tags, tag, errorMsg } = state;
+  const { title, url, tags, tag, date, errorMsg } = state;
   return (
     <form onSubmit={onFormSubmit}>
       {errorMsg && <p className="errorMsg">{errorMsg}</p>}
@@ -62,8 +63,7 @@ const BookmarkForm = (props) => {
       </>
       <>
         <label>Tag</label>
-        <input
-          as="select"
+        <select
           name="tag"
           value={tag || ''}
           onChange={onInputChange}
@@ -71,7 +71,7 @@ const BookmarkForm = (props) => {
           {tags.map((tag, index) => (
             <option key={index}>{tag}</option>
           ))}
-        </input>
+        </select>
       </>
       <button type="submit">
         Submit

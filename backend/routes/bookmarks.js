@@ -1,13 +1,13 @@
 const router = require('express').Router();
 let Bookmark = require('../models/bookmark.model');
 
-router.route('/').get((req, res) => {
-  Bookmark.find()
+router.route('/').get(async(req, res) => {
+  await Bookmark.find()
     .then(bookmarks => res.json(bookmarks))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/add').post((req, res) => {
+router.route('/add').post(async(req, res) => {
   const title = req.body.title;
   const url = req.body.url;
   const tag = req.body.tag;
@@ -20,8 +20,8 @@ router.route('/add').post((req, res) => {
     date
   });
 
-  newBookmark.save()
-  .then(() => res.json('Bookmark added!'))
+  await newBookmark.save()
+  .then(bookmarks => res.json(bookmarks))
   .catch(err => res.status(400).json('Error: ' + err));
 });
 

@@ -1,14 +1,16 @@
 import React from 'react';
 import BookmarkForm from './BookmarkForm';
+import { addBookmark } from '../services/bookmark';
 /* import Loader from './Loader';
-import useLoader from '../custom-hooks/useLoader'; */
+import useLoader from '../hooks/useLoader'; */
 
 const AddBookmark = (props) => {
   //const { isLoading, showLoader, hideLoader } = useLoader();
-  const onSubmit = (bookmark) => {
+  const onSubmit = async(bookmark) => {
     //showLoader();
    // props.dispatch(initiateAddBookmark(bookmark)).then(() => {
      // hideLoader();
+      await addBookmark(bookmark);
       props.history.push('/');
     //});
   };

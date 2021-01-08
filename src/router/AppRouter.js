@@ -13,7 +13,7 @@ const AppRouter = () => (
     <div className="container">
       <div className="bookmark-form">
         <Switch>
-           <Route component={Controls} path="/" exact={true} />
+          <Route component={Controls} path="/" exact={true} />
          {/* <Route component={BookmarkList} path="/list" /> */}
           <Route component={AddBookmark} path="/add" />
           {/* <Route component={EditBookmark} path="/edit/:id" /> */}

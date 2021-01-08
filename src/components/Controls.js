@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { getBookmarks, addBookmark } from '../services/bookmark';
+import { getBookmarks } from '../services/bookmark';
 import List from './List';
 
 const test = {
