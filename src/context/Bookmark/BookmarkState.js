@@ -35,10 +35,10 @@ const BookmarkState = (props) => {
     }
   };
 
-  const removeBookmarks = async (id) => { 
+  const removeBookmarks = async (_id) => { 
     dispatch({
       type: REMOVE_BOOKMARKS,
-      payload: id
+      payload: _id
     });
   }
 
@@ -81,7 +81,7 @@ const BookmarkState = (props) => {
       let { data } = res;
       dispatch({ 
         type: REMOVE_BOOKMARKS, 
-        payload: data 
+        payload: _id 
       });
     } catch (error) {
       console.log(error.response + ' ' + error.response.data);

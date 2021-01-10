@@ -31,10 +31,14 @@ router.route('/add').post(async(req, res) => {
   }
 });
 
-router.route('/:id').delete((req, res) => {
-  Bookmark.findByIdAndDelete(req.params.id)
-    .then(() => res.json('Bookmark deleted.'))
-    .catch(err => res.status(400).json('Error: ' + err));
+router.route('/:id').delete(async(req, res) => {
+  try{
+     await Bookmark.findByIdAndDelete(req.params.id)
+      .then(bookmarks => res.json(bookmarks))
+      .catch(err => res.status(400).json('Error: ' + err));
+  }catch(err){
+    console.log('Error deleting bookmark' + err);
+  }
 });
 
 /* router.route('/:id').get((req, res) => {

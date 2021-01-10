@@ -19,7 +19,7 @@ export default (state, action) => {
       return {
         ...state,
         bookmarks: state.bookmarks.filter(bookmark => 
-          bookmark.id !== action.payload)
+          bookmark._id !== action.payload)
       };
 
     case ADD_BOOKMARKS:
