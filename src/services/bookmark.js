@@ -23,23 +23,19 @@ export const getBookmarks = async () => {
 
 export const addBookmark = async (params) => {
     try {
-        await API.post('/add', {
+        let data = await API.post('/add', {
             title: params.title,
             url: params.url,
             tag: params.tag
         })
         .then(response => {
-            alert(`Data saved successfully. 
-                ID = ${response.data.title}
-                First name = ${response.data.url}
-                Role = ${response.data.tag}
-                Created At = ${response.data.date}`
-            )
+            alert(`Data saved successfully.`)
             console.log(response.data);
         })
         .catch(error => {
             console.log(error);
         });
+        return data;
     }catch(error){
         console.error(error);
     }

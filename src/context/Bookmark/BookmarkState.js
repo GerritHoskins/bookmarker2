@@ -56,6 +56,24 @@ const BookmarkState = (props) => {
     });
   }
 
+  const initiateAddBookmarks = async (bookmark) => {
+  //  return async (dispatch) => {
+      try {
+        let res = await API.post('/add', {
+          title: bookmark.title,
+          url: bookmark.url,
+          tag: bookmark.tag
+        });
+        let { data } = res;
+        dispatch({ 
+          type: ADD_BOOKMARKS, 
+          payload: data 
+        });
+      } catch (error) {
+        console.log(error.response + ' ' + error.response.data);
+      }
+    //};
+  };
 
   return (
     <BookmarkContext.Provider
@@ -65,6 +83,7 @@ const BookmarkState = (props) => {
         getBookmarks,
         removeBookmarks,
         addBookmarks,
+        initiateAddBookmarks,
         editBookmarks,
       }}
     >

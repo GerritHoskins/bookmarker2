@@ -1,8 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
-//import './stylesheet/styles.css';
-import BookmarkList from './components/BookmarkList';
+import './stylesheet/styles.css';
+import Home from './components/Home';
 import BookmarkState from './context/Bookmark/BookmarkState';
+import AddBookmark from './components/AddBookmark';
 
 function App() {
   return (
@@ -10,7 +11,8 @@ function App() {
       <BrowserRouter>
         <div className="App">     
           <Switch>
-            <Route component={BookmarkList} path="/" exact={true} />
+            <Route component={Home} path="/" exact={true} />
+            <Route component={AddBookmark} path="/add" exact />
           </Switch>
         </div>
       </BrowserRouter>        
