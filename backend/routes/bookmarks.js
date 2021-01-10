@@ -31,17 +31,18 @@ router.route('/add').post(async(req, res) => {
   }
 });
 
+router.route('/:id').delete((req, res) => {
+  Bookmark.findByIdAndDelete(req.params.id)
+    .then(() => res.json('Bookmark deleted.'))
+    .catch(err => res.status(400).json('Error: ' + err));
+});
+
 /* router.route('/:id').get((req, res) => {
   Bookmark.findById(req.params.id)
     .then(bookmark => res.json(bookmark))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
-router.route('/:id').delete((req, res) => {
-  Bookmark.findByIdAndDelete(req.params.id)
-    .then(() => res.json('Exercise deleted.'))
-    .catch(err => res.status(400).json('Error: ' + err));
-});
 
 router.route('/update/:id').post((req, res) => {
   Bookmark.findByIdAndUpdate(req.params.id)

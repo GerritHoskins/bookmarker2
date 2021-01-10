@@ -75,6 +75,19 @@ const BookmarkState = (props) => {
     //};
   };
 
+  const initiateRemoveBookmarks = async (_id) => {
+    try {
+      let res = await API.delete('/'+ _id);
+      let { data } = res;
+      dispatch({ 
+        type: REMOVE_BOOKMARKS, 
+        payload: data 
+      });
+    } catch (error) {
+      console.log(error.response + ' ' + error.response.data);
+    }
+  };
+
   return (
     <BookmarkContext.Provider
       value={{
@@ -85,6 +98,7 @@ const BookmarkState = (props) => {
         addBookmarks,
         initiateAddBookmarks,
         editBookmarks,
+        initiateRemoveBookmarks,
       }}
     >
       {props.children}
