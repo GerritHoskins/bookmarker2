@@ -26,8 +26,7 @@ export const addBookmark = async (params) => {
         await API.post('/add', {
             title: params.title,
             url: params.url,
-            tag: params.tag,
-            date: params.date
+            tag: params.tag
         })
         .then(response => {
             alert(`Data saved successfully. 

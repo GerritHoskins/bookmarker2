@@ -7,7 +7,6 @@ const BookmarkForm = (props) => {
     url: props.url ? props.url : '',
     tag: props.tag ? props.tag : 'React',
     tags: TAGS,
-    date: '2019-04-30T21:19:15.187Z',
     errorMsg: ''
   });
 
@@ -21,12 +20,12 @@ const BookmarkForm = (props) => {
 
   const onFormSubmit = (event) => {
     event.preventDefault();
-    const { title, url, tag, date } = state;
+    const { title, url, tag } = state;
     const { _id } = props;
     const isEditPage = !!props.title;
 
     if (title.trim() !== '' && url.trim() !== '' && tag.trim() !== '') {
-      let data = { title, url, tag, date };
+      let data = { title, url, tag };
       if (isEditPage) {
         data = { ...data, _id };
       }

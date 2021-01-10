@@ -33,7 +33,7 @@ const Controls = () => {
             fetchBookmarks();              
             setLoader(false);
         }        
-    }, [])
+    }, [bookmarks])
 
     return (
         <section className="controls">

@@ -4,6 +4,5 @@ content-type: application/json
 {
     "username": "beau",
     "description": "bike ride",
-    "duration": 50,
-    "date": "2019-04-30T21:19:15.187Z"
+    "duration": 50
 }

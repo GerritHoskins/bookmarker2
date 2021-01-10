@@ -4,6 +4,5 @@ content-type: application/json
 {
     "title": "React & Axios",
     "url": "http://zetcode.com/javascript/axios/",
-    "tag": "React Axios",
-    "date": "2020-04-30T21:19:15.187Z"
+    "tag": "React Axios"
 }

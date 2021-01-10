@@ -2,27 +2,33 @@ const router = require('express').Router();
 let Bookmark = require('../models/bookmark.model');
 
 router.route('/').get(async(req, res) => {
-  await Bookmark.find()
-    .then(bookmarks => res.json(bookmarks))
-    .catch(err => res.status(400).json('Error: ' + err));
+  try{
+    await Bookmark.find()
+      .then(bookmarks => res.json(bookmarks))
+      .catch(err => res.status(400).json('Error: ' + err));
+  }catch(err){
+    console.log('Error requesting bookmarks' + err);
+  }
 });
 
 router.route('/add').post(async(req, res) => {
-  const title = req.body.title;
-  const url = req.body.url;
-  const tag = req.body.tag;
-  const date = Date.parse(req.body.date);
+  try{
+    const title = req.body.title;
+    const url = req.body.url;
+    const tag = req.body.tag;
 
-  const newBookmark = new Bookmark({
-    title,
-    url,
-    tag,
-    date
-  });
+    const newBookmark = new Bookmark({
+      title,
+      url,
+      tag
+    });
 
-  await newBookmark.save()
-  .then(bookmarks => res.json(bookmarks))
-  .catch(err => res.status(400).json('Error: ' + err));
+    await newBookmark.save()
+      .then(bookmarks => res.json(bookmarks))
+      .catch(err => res.status(400).json('Error: ' + err));
+  }catch(err){
+    console.log('Error adding bookmark' + err);
+  }
 });
 
 /* router.route('/:id').get((req, res) => {
