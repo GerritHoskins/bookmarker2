@@ -88,6 +88,25 @@ const BookmarkState = (props) => {
     }
   };
 
+  const initiateEditBookmarks = async (bookmark) => {
+    //  return async (dispatch) => {
+        try {
+          let res = await API.post('/edit/:id', {
+            title: bookmark.title,
+            url: bookmark.url,
+            tag: bookmark.tag
+          });
+          let { data } = res;
+          dispatch({ 
+            type: EDIT_BOOKMARKS, 
+            payload: data 
+          });
+        } catch (error) {
+          console.log(error.response + ' ' + error.response.data);
+        }
+      //};
+    };
+
   return (
     <BookmarkContext.Provider
       value={{
@@ -97,7 +116,7 @@ const BookmarkState = (props) => {
         removeBookmarks,
         addBookmarks,
         initiateAddBookmarks,
-        editBookmarks,
+        initiateEditBookmarks,
         initiateRemoveBookmarks,
       }}
     >

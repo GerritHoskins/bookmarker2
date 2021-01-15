@@ -1,7 +1,7 @@
 const router = require('express').Router();
 let Bookmark = require('../models/bookmark.model');
 
-router.route('/').get(async(req, res) => {
+router.route('/').get(async(res) => {
   try{
     await Bookmark.find()
       .then(bookmarks => res.json(bookmarks))
@@ -41,26 +41,34 @@ router.route('/:id').delete(async(req, res) => {
   }
 });
 
-/* router.route('/:id').get((req, res) => {
-  Bookmark.findById(req.params.id)
-    .then(bookmark => res.json(bookmark))
-    .catch(err => res.status(400).json('Error: ' + err));
+router.route('/:id').get(async(req, res) => {
+  try{
+    await Bookmark.findById(req.params.id)
+      .then(bookmark => res.json(bookmark))
+      .catch(err => res.status(400).json('Error: ' + err));
+  }catch(err){
+    console.log('Error fetching bookmark' + req.params.id +' '+ err);
+  }
 });
 
 
-router.route('/update/:id').post((req, res) => {
-  Bookmark.findByIdAndUpdate(req.params.id)
-    .then(bookmark => {
-      bookmark.title = req.body.title; 
-      bookmark.url = req.body.url; 
-      bookmark.tag = req.body.tag; 
-      bookmark.date = Date(req.body.date); 
+router.route('/edit/:id').post(async(req, res) => {
+  try{
+    await Bookmark.findByIdAndUpdate(req.params.id)
+      .then(bookmark => {
+        bookmark.title = req.body.title; 
+        bookmark.url = req.body.url; 
+        bookmark.tag = req.body.tag; 
+        //bookmark.date = Date(req.body.date); 
 
-      bookmark.save()
-            .then(() => res.json('Exercise updated.'))
-            .catch(err => res.status(400).json('Error: ' + err));
-    })
-    .catch(err => res.status(400).json('Error: ' + err));
-}); */
+        bookmark.save()
+          .then(() => res.json('Bookmark updated.'))
+          .catch(err => res.status(400).json('Error: ' + err));
+      })
+      .catch(err => res.status(400).json('Error: ' + err));
+    }catch(err){
+      console.log('Error updating bookmark' + err);
+    }
+});
 
 module.exports = router;
