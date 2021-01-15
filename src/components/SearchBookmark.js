@@ -1,13 +1,20 @@
 import React, { Fragment, useState, useContext } from 'react';
 import bookmarkContext from '../context/Bookmark/BookmarkContext';
+import { useHistory } from 'react-router-dom';
 
 const SearchBookmark = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const { initiateSearchBookmarks } = useContext(bookmarkContext);  
 
+  let history = useHistory();
+
   const onSubmit = e => {
-      e.preventDefault();
-      initiateSearchBookmarks(searchTerm);  
+      e.preventDefault();      
+      if(searchTerm.length === 0){
+        history.replace("/");
+      }else {
+        initiateSearchBookmarks(searchTerm);  
+      }
   }
 
   const handleOnChange = (value) => {
