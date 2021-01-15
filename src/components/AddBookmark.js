@@ -1,12 +1,12 @@
-import React, { Fragment, useState, useContext } from 'react';
-import bookmarkContext from '../context/Bookmark/BookmarkContext';
+import React, { Fragment, useState, useContext } from "react";
+import bookmarkContext from "../context/Bookmark/BookmarkContext";
 import { useHistory } from "react-router-dom";
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 const AddBookmark = () => {
-  const [title, setTitle] = useState('');
-  const [url, setUrl] = useState('');
-  const [tag, setTag] = useState('');
+  const [title, setTitle] = useState("");
+  const [url, setUrl] = useState("");
+  const [tag, setTag] = useState("");
   const { initiateAddBookmarks } = useContext(bookmarkContext);
   let history = useHistory();
 
@@ -48,7 +48,7 @@ const AddBookmark = () => {
                           Add Bookmark
                       </button>
                   </div>
-                  <div className="text-center mt-4 text-gray-500"><Link to='/'>Cancel</Link></div>
+                  <div className="text-center mt-4 text-gray-500"><Link to="/">Cancel</Link></div>
               </form>
           </div>
       </Fragment>
