@@ -6,7 +6,8 @@ import {
   GET_BOOKMARKS,
   REMOVE_BOOKMARKS,
   ADD_BOOKMARKS,
-  EDIT_BOOKMARKS
+  EDIT_BOOKMARKS,
+  SEARCH_BOOKMARKS
 } from '../types';
 
 const API = axios.create({
@@ -16,6 +17,7 @@ const API = axios.create({
 const BookmarkState = (props) => {
   let initialState = {
     bookmarks: [],
+    searchedBookmarks: [],
     activeBookmark: null,
   };
 
@@ -57,61 +59,71 @@ const BookmarkState = (props) => {
   }
 
   const initiateAddBookmarks = async (bookmark) => {
-  //  return async (dispatch) => {
-      try {
-        let res = await API.post('/add', {
-          title: bookmark.title,
-          url: bookmark.url,
-          tag: bookmark.tag
-        });
-        let { data } = res;
-        dispatch({ 
-          type: ADD_BOOKMARKS, 
-          payload: data 
-        });
-      } catch (error) {
-        console.log(error.response + ' ' + error.response.data);
-      }
-    //};
+    try {
+      let res = await API.post('/add', {
+        title: bookmark.title,
+        url: bookmark.url,
+        tag: bookmark.tag
+      });
+      let { data } = res;
+      dispatch({ 
+        type: ADD_BOOKMARKS, 
+        payload: data 
+      });
+    }catch (error) {
+      console.log(error.response + ' ' + error.response.data);
+    }
   };
 
   const initiateRemoveBookmarks = async (_id) => {
     try {
-      let res = await API.delete('/'+ _id);
+      let res = await API.delete(`/${_id}`);
       let { data } = res;
       dispatch({ 
         type: REMOVE_BOOKMARKS, 
         payload: _id 
       });
-    } catch (error) {
+    }catch (error) {
       console.log(error.response + ' ' + error.response.data);
     }
   };
 
   const initiateEditBookmarks = async (bookmark) => {
-    //  return async (dispatch) => {
-        try {
-          let res = await API.post('/edit/' + bookmark._id, {
-            title: bookmark.title,
-            url: bookmark.url,
-            tag: bookmark.tag
-          });
-          let { data } = res;
-          dispatch({ 
-            type: EDIT_BOOKMARKS, 
-            payload: data 
-          });
-        } catch (error) {
-          console.log(error.response + ' ' + error.response.data);
-        }
-      //};
-    };
+    try {
+      let res = await API.post(`/edit/${bookmark._id}`, {
+        title: bookmark.title,
+        url: bookmark.url,
+        tag: bookmark.tag
+      });
+      let { data } = res;
+      dispatch({ 
+        type: EDIT_BOOKMARKS, 
+        payload: data 
+      });
+    }catch (error) {
+      console.log(error.response + ' ' + error.response.data);
+    }
+  };
+
+  const initiateSearchBookmarks = async (searchTerms) => {
+    try {
+      let res = await API.get(`/search/${searchTerms}`);
+      let { data } = res;
+      dispatch({ 
+        type: SEARCH_BOOKMARKS, 
+        payload: data 
+      });
+    }catch (error) {
+      console.log(error.response + ' ' + error.response.data);
+    }
+  };
 
   return (
     <BookmarkContext.Provider
       value={{
         bookmarks: state.bookmarks,
         activeBookmark: state.activeBookmark,
+        searchedBookmarks: state.searchedBookmarks,
         getBookmarks,
         removeBookmarks,
         editBookmarks,
@@ -119,6 +131,7 @@ const BookmarkState = (props) => {
         initiateAddBookmarks,
         initiateEditBookmarks,
         initiateRemoveBookmarks,
+        initiateSearchBookmarks,
       }}
     >
       {props.children}

@@ -35,10 +35,7 @@ const EditBookmark = route => {
       <div className="w-full max-w-sm container mt-20 mx-auto">
         <form onSubmit={onSubmit}>
           <div className="w-full mb-5">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              htmlFor="title"
-            >
+            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="title">
               Title of bookmark
             </label>
             <input
@@ -50,11 +47,8 @@ const EditBookmark = route => {
             />
           </div>
           <div className="w-full  mb-5">
-            <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              htmlFor="url"
-            >
-              Url
+            <label className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="url">
+                Url
             </label>
             <input
               className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:text-gray-600 focus:shadow-outline"
@@ -66,9 +60,7 @@ const EditBookmark = route => {
           </div>
           <div className="w-full  mb-5">
             <label
-              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2"
-              htmlFor="tag"
-            >
+              className="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" htmlFor="tag">
               Tags
             </label>
             <input

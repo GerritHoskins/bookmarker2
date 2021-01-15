@@ -1,15 +1,15 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import bookmarkContext from '../context/Bookmark/BookmarkContext';
 
 const BookmarkList = () => {
-  //const BookmarkContext = useContext(bookmarkContext);
-  const { bookmarks, editBookmarks, initiateRemoveBookmarks, initiateEditBookmarks, getBookmarks } = useContext(bookmarkContext);  
+  //const [bookmarkList, setBookmarkList] = useState([]);
+  const { bookmarks, searchedBookmarks, editBookmarks, initiateRemoveBookmarks, getBookmarks } = useContext(bookmarkContext);  
 
   useEffect(() => {
-    getBookmarks();
+    getBookmarks();    
   }, []);
-
+ 
   return (        
     <>
       <div className="list-group h-100" >

@@ -59,7 +59,6 @@ router.route('/edit/:id').post(async(req, res) => {
         bookmark.title = req.body.title; 
         bookmark.url = req.body.url; 
         bookmark.tag = req.body.tag; 
-        //bookmark.date = Date(req.body.date); 
 
         bookmark.save()
           .then(() => res.json('Bookmark updated.'))
@@ -69,6 +68,17 @@ router.route('/edit/:id').post(async(req, res) => {
     }catch(err){
       console.log('Error updating bookmark' + err);
     }
+});
+
+router.route('/search/:searchTerms').get(async(req, res) => {
+  try{
+    //await Bookmark.find({$text: {$search: req.params.searchTerms}})
+    await Bookmark.find( { $text: { $search: req.params.searchTerms } } )
+      .then(bookmarks => res.json(bookmarks))
+      .catch(err => res.status(400).json('Error: ' + err));    
+  }catch(err){
+    console.log('Error during search query' + err);
+  }
 });
 
 module.exports = router;

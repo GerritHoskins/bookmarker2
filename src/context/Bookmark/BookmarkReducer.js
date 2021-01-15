@@ -2,7 +2,8 @@ import {
    GET_BOOKMARKS,
    REMOVE_BOOKMARKS,
    ADD_BOOKMARKS,
-   EDIT_BOOKMARKS
+   EDIT_BOOKMARKS,
+   SEARCH_BOOKMARKS
 } from '../types';
 
 export default (state, action) => {
@@ -29,19 +30,17 @@ export default (state, action) => {
       };
 
     case EDIT_BOOKMARKS:
-      const updatedBookmark = action.payload;
-
-      /* const updatedBookmarks = state.bookmarks.map(bookmark => {
-        if (bookmark._id === updatedBookmark) {
-          return bookmark;
-        }
-      }); */
-
       return {
         ...state,
         bookmarks: state.bookmarks.filter(bookmark => 
-          bookmark._id  === updatedBookmark)
+          bookmark._id  === action.payload)
       };
+
+    case SEARCH_BOOKMARKS:
+      return {
+        ...state,
+        bookmarks: payload,
+      };  
 
     default:
       return state;
