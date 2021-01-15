@@ -49,10 +49,10 @@ const BookmarkState = (props) => {
     });
   }
 
-  const editBookmarks = async (bookmarks) => {
+  const editBookmarks = async (bookmark) => {
     dispatch({
       type: EDIT_BOOKMARKS,
-      payload: bookmarks
+      payload: bookmark
     });
   }
 

@@ -31,16 +31,16 @@ export default (state, action) => {
     case EDIT_BOOKMARKS:
       const updatedBookmark = action.payload;
 
-      const updatedBookmarks = state.bookmarks.map(bookmark => {
-        if (bookmark._id === updatedBookmark._id) {
-          return updatedBookmark;
+      /* const updatedBookmarks = state.bookmarks.map(bookmark => {
+        if (bookmark._id === updatedBookmark) {
+          return bookmark;
         }
-        return bookmark;
-      });
+      }); */
 
       return {
         ...state,
-        bookmarks: updatedBookmarks
+        bookmarks: state.bookmarks.filter(bookmark => 
+          bookmark._id  === updatedBookmark)
       };
 
     default:

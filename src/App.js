@@ -14,7 +14,7 @@ function App() {
           <Switch>
             <Route component={Home} path="/" exact={true} />
             <Route component={AddBookmark} path="/add" exact />
-            <Route component={EditBookmark} path="/update/:id" exact />
+            <Route component={EditBookmark} path="/edit/:id" exact />
           </Switch>
         </div>
       </BrowserRouter>        
