@@ -1,7 +1,7 @@
 const router = require('express').Router();
 let Bookmark = require('../models/bookmark.model');
 
-router.route('/').get(async(res) => {
+router.route('/').get(async(req, res) => {
   try{
     await Bookmark.find()
       .then(bookmarks => res.json(bookmarks))

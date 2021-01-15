@@ -32,7 +32,7 @@ export default (state, action) => {
       const updatedBookmark = action.payload;
 
       const updatedBookmarks = state.bookmarks.map(bookmark => {
-        if (bookmark.id === updatedBookmark.id) {
+        if (bookmark._id === updatedBookmark._id) {
           return updatedBookmark;
         }
         return bookmark;

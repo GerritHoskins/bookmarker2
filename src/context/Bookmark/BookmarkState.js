@@ -91,7 +91,7 @@ const BookmarkState = (props) => {
   const initiateEditBookmarks = async (bookmark) => {
     //  return async (dispatch) => {
         try {
-          let res = await API.post('/edit/:id', {
+          let res = await API.post('/edit/' + bookmark._id, {
             title: bookmark.title,
             url: bookmark.url,
             tag: bookmark.tag
@@ -114,6 +114,7 @@ const BookmarkState = (props) => {
         activeBookmark: state.activeBookmark,
         getBookmarks,
         removeBookmarks,
+        editBookmarks,
         addBookmarks,
         initiateAddBookmarks,
         initiateEditBookmarks,
