@@ -1,7 +1,6 @@
 import React, { Fragment, useState, useContext, useEffect } from "react";
 import bookmarkContext from "../context/Bookmark/BookmarkContext";
-import { useHistory } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 const EditBookmark = route => {
   const [selectedBookmark, setSelectedBookmark] = useState({

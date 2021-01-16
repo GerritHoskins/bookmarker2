@@ -39,7 +39,7 @@ export default (state, action) => {
     case SEARCH_BOOKMARKS:
       return {
         ...state,
-        searchedBookmarks: payload,
+        bookmarks: payload,
       };  
 
     default:

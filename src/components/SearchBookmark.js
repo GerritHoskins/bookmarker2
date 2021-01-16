@@ -9,12 +9,14 @@ const SearchBookmark = () => {
   let history = useHistory();
 
   const onSubmit = e => {
-      e.preventDefault();      
-      if(searchTerm.length === 0){
+      e.preventDefault();     
+      initiateSearchBookmarks(searchTerm);  
+      history.push("/");
+      /* if(searchTerm.length === 0){
         history.replace('/');
       }else {
-        initiateSearchBookmarks(searchTerm);  
-      }
+        
+      } */
   }
 
   const handleOnChange = (value) => {

@@ -106,6 +106,10 @@ const BookmarkState = (props) => {
   };
 
   const initiateSearchBookmarks = async (searchTerms) => {
+    if(!searchTerms.length > 0){
+      getBookmarks();
+      return;
+    }
     try {
       let res = await API.get(`/search/${searchTerms}`);
       let { data } = res;

@@ -13,8 +13,8 @@ function App() {
         <div className="App">     
           <Switch>
             <Route component={Home} path="/" exact={true} />
-            <Route component={AddBookmark} path="/add" exact />
-            <Route component={EditBookmark} path="/edit/:id" exact />
+            <Route component={AddBookmark} path="/add" exact={true}  />
+            <Route component={EditBookmark} path="/edit/:id" exact={true}  />
           </Switch>
         </div>
       </BrowserRouter>        
