@@ -1,7 +1,6 @@
 import React, { Fragment, useState, useContext } from "react";
 import bookmarkContext from "../context/Bookmark/BookmarkContext";
-import { useHistory } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 const AddBookmark = () => {
   const [title, setTitle] = useState("");
@@ -11,14 +10,14 @@ const AddBookmark = () => {
   let history = useHistory();
 
   const onSubmit = e => {
-      e.preventDefault();
-      const newBookmark = {
-          title,
-          url,
-          tag
-      }
-      initiateAddBookmarks(newBookmark);
-      history.push("/");
+    e.preventDefault();
+    const newBookmark = {
+        title,
+        url,
+        tag
+    }
+    initiateAddBookmarks(newBookmark);
+    history.push("/");
   }
 
   return (

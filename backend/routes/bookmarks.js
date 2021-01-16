@@ -1,5 +1,6 @@
 const router = require('express').Router();
 let Bookmark = require('../models/bookmark.model');
+let Tag = require('../models/tag.model');
 
 router.route('/').get(async(req, res) => {
   try{
@@ -17,15 +18,28 @@ router.route('/add').post(async(req, res) => {
     const url = req.body.url;
     const tag = req.body.tag;
 
+    const tags = tag.split(" ").map(function(tag) {
+      return tag ;
+    });
+    console.log(tags)
+
+    const newTag = new Tag({
+      tags
+    });
+
+    await newTag.save()
+    .then(() => res.json('Tags added.'))
+    .catch(err => res.status(400).json('Error:' + err));
+
     const newBookmark = new Bookmark({
       title,
       url,
-      tag
+      tag,
     });
 
     await newBookmark.save()
       .then(bookmarks => res.json(bookmarks))
-      .catch(err => res.status(400).json('Error: ' + err));
+      .catch(err => res.status(400).json('Bookmark Error: ' + err));
   }catch(err){
     console.log('Error adding bookmark' + err);
   }
@@ -50,7 +64,6 @@ router.route('/:id').get(async(req, res) => {
     console.log('Error fetching bookmark' + req.params.id +' '+ err);
   }
 });
-
 
 router.route('/edit/:id').post(async(req, res) => {
   try{
