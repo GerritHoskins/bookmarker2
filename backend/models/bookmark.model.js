@@ -9,7 +9,7 @@ const bookmarkSchema = new Schema({
 }, {
     timestamps: true,
 });
-
+bookmarkSchema.index({title: 'text', url: 'text'});
 //bookmarkSchema.index({'$**': 'text'});
 const Bookmark = mongoose.model('Bookmark', bookmarkSchema);
 

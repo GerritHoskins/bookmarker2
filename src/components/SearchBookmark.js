@@ -11,7 +11,7 @@ const SearchBookmark = () => {
   const onSubmit = e => {
       e.preventDefault();      
       if(searchTerm.length === 0){
-        history.replace("/");
+        history.replace('/');
       }else {
         initiateSearchBookmarks(searchTerm);  
       }

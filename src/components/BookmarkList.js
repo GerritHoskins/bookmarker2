@@ -2,19 +2,33 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import bookmarkContext from '../context/Bookmark/BookmarkContext';
 
-const BookmarkList = () => {
-  //const [bookmarkList, setBookmarkList] = useState([]);
+const BookmarkList = () => { 
   const { bookmarks, searchedBookmarks, editBookmarks, initiateRemoveBookmarks, getBookmarks } = useContext(bookmarkContext);  
+  const [bookmarkList, setBookmarkList] = useState([]);
 
-  useEffect(() => {
-    getBookmarks();    
-  }, []);
+  useEffect(() => {    
+    const fetchBookmarks = async() => {  
+      try{      
+        if(searchedBookmarks.length > 0){
+          setBookmarkList(searchedBookmarks);
+        }
+        if(bookmarks.length > 0 && bookmarkList.length > 0){
+          return;
+        }
+        await getBookmarks() 
+        setBookmarkList(bookmarks);
+      }catch(err) {
+        console.log(err);
+      } 
+    }
+    fetchBookmarks();
+  },[bookmarkList]);
  
   return (        
     <>
       <div className="list-group h-100" >
-        {bookmarks.length 
-          ? bookmarks.map((bookmark) => {
+        {bookmarkList.length > 0 
+          ? bookmarkList.map((bookmark) => {
             const {_id, title, tag, date, url} = bookmark;  
             return (
                     <div className="flex items-center bg-gray-100 mb-10 shadow" key={_id}>
