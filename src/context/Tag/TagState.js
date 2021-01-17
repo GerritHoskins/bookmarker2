@@ -42,7 +42,7 @@ const TagState = (props) => {
   const initiateAddTags = async (tags) => {
     try {
       let res = await API.post('/add', {
-        name: tag.name
+        name: tags.name
       });
       let { data } = res;
       dispatch({ 

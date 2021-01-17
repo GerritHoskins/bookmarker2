@@ -1,6 +1,8 @@
   
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
+import TagState from '../context/Tag/TagState';
+import TagList from './Tags/TagList';
 import BookmarkList from './BookmarkList';
 import SearchBookmark from './SearchBookmark';
 
@@ -8,7 +10,9 @@ const Home = () => {
     return (
         <Fragment>       
             <div className="container mx-auto">
-            <SearchBookmark />
+            <SearchBookmark />    
+            <TagState>     
+                <TagList />
                 <div className="w-full text-right container mx-auto mb-2">
                     <Link to="/add">
                         <button className="bg-green-400 hover:bg-green-500 text-white font-semibold py-2 px-4 rounded inline-flex items-center">
@@ -16,8 +20,9 @@ const Home = () => {
                             <span className="pl-2">Add Bookmark</span>
                         </button>
                     </Link>                    
-                </div>                
-                <BookmarkList />
+                </div>           
+            </TagState>   
+            <BookmarkList />
             </div>
         </Fragment>
     )
