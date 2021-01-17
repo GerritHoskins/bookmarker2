@@ -23,8 +23,10 @@ connection.once('open', () => {
 })
 
 const bookmarkRouter = require('./routes/bookmarks');
+const tagRouter = require('./routes/tags');
 
 app.use('/bookmarks', bookmarkRouter);
+app.use('/tags', tagRouter);
 
 app.listen(port, () => {
     console.log('now listening for requests');
