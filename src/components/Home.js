@@ -2,7 +2,7 @@
 import React, { Fragment } from 'react';
 import { Link } from 'react-router-dom';
 import TagState from '../context/Tag/TagState';
-import TagList from './Tags/TagList';
+import TagCloud from './Tags/TagCloud';
 import BookmarkList from './BookmarkList';
 import SearchBookmark from './SearchBookmark';
 
@@ -12,7 +12,7 @@ const Home = () => {
             <div className="container mx-auto">
             <SearchBookmark />    
             <TagState>     
-                <TagList />
+                <TagCloud />
                 <div className="w-full text-right container mx-auto mb-2">
                     <Link to="/add">
                         <button className="bg-green-400 hover:bg-green-500 text-white font-semibold py-2 px-4 rounded inline-flex items-center">
