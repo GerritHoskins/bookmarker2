@@ -18,18 +18,14 @@ router.route('/add').post(async(req, res) => {
     const url = req.body.url;
     const tag = req.body.tag;
 
-    const tags = tag.split(" ").map(function(tag) {
-      return tag ;
+    const newTags = tag.split(" ").map(function(tag) {
+      return {'name' : tag}
     });
-    console.log(tags)
-
-    const newTag = new Tag({
-      tags
-    });
-
-    await newTag.save()
-    .then(() => res.json('Tags added.'))
-    .catch(err => res.status(400).json('Error:' + err));
+    
+    await Tag.create(newTags)
+      //.then(tag => process.exit(0))
+      .then(() => console.log('Tags created sucessfully'))
+      .catch(err => res.status(400).json('Error creating tags: ' + err));
 
     const newBookmark = new Bookmark({
       title,
@@ -39,7 +35,7 @@ router.route('/add').post(async(req, res) => {
 
     await newBookmark.save()
       .then(bookmarks => res.json(bookmarks))
-      .catch(err => res.status(400).json('Bookmark Error: ' + err));
+      .catch(err => res.status(400).json('Error saving new Bookmark: ' + err));
   }catch(err){
     console.log('Error adding bookmark' + err);
   }
